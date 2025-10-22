@@ -14,7 +14,7 @@ fun pickRandomWord(words: MutableList<String>): String {
 
 fun obtainGuess(attempt: Int): String {
     while (true) {
-        print("Attempt $attempt: ")   // stays on same line
+        print("Attempt $attempt: ")
         val guess = readln().trim().lowercase()
 
         if (isValid(guess)) {
@@ -26,19 +26,19 @@ fun obtainGuess(attempt: Int): String {
 }
 
 fun evaluateGuess(guess: String, target: String): List<Int> {
-    val result = mutableListOf<Int>{
-        for (i in 0..4){
-            (if guess[i] == target[i]){
-                return.add(1)
-            }
-            else{
-                return.add(0)
-            }
-            
+    val result = mutableListOf<Int>()
+    for (i in 0..4) {
+        if (guess[i] == target[i]) {
+            result.add(1)
+        } else {
+            result.add(0)
         }
     }
     return result
 }
+
+fun displayGuess(guess: String, matches: List<Int>)
+
 
 
 

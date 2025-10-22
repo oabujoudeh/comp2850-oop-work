@@ -4,7 +4,8 @@ import io.kotest.matchers.shouldBe
 
 @Suppress("unused")
 class WordleTest : StringSpec({
-    //  Tests for isValid
+
+    // Tests for isValid
     "isValid should return true for a word with 5 letters" {
         isValid("hello") shouldBe true
     }
@@ -23,51 +24,47 @@ class WordleTest : StringSpec({
     }
 
     // Tests for readWordList
-    "readWordList should read wordle target words from the words.txt file, returning them as a list of strings"{
+    "readWordList should read wordle target words from the words.txt file, returning them as a list of strings" {
         val words = readWordList("data/words.txt")
 
-        // make sure list is not empty
-        withClue("List should not be empty"){
+        withClue("List should not be empty") {
             words.isNotEmpty() shouldBe true
         }
 
-        // make sure list is mutable
-        withClue("List should be mutable "){
+        withClue("List should be mutable") {
             words.removeAt(0)
             words.isNotEmpty() shouldBe true
         }
 
-        // make sure the words are strings of length five
-        withClue("Words should be of length 5"){
+        withClue("Words should be of length 5") {
             words.all { it.length == 5 } shouldBe true
-
         }
-
-    // Tests for pickRandomWord    
-        //picks a random word and deletes it
-        "pickRandomWord should return a word from the list and remove it"{
-
-            val words = ["madrid","water","hello"]  //small list
-
-            val chosen = pickRandomWord(words)
-
-            // make sure the words are in the original list
-            (chosen == "madrid"|| chosen == "water"|| chosen == "hello") shouldBe true
-
-            // make sure chosen word is removed from original list
-            words.contains(chosen) shouldBe false
-
-            // original list size should decrease by one
-            words.size() shouldBe 2
-        }
-
-        
-
-
-    
-
-        }
-
     }
 
+    // Tests for pickRandomWord
+    "pickRandomWord should return a word from the list and remove it" {
+        val words = mutableListOf("hello", "water", "world") // all 5 letters
+
+        val chosen = pickRandomWord(words)
+
+        (chosen == "hello" || chosen == "water" || chosen == "world") shouldBe true
+        words.contains(chosen) shouldBe false
+        words.size shouldBe 2
+    }
+
+    // Tests for evaluateGuess
+    "evaluateGuess should return all 1s when guess matches target" {
+        val result = evaluateGuess("hello", "hello")
+        result shouldBe listOf(1, 1, 1, 1, 1)
+    }
+
+    "evaluateGuess should return all 0s when guess has no matches" {
+        val result = evaluateGuess("hello", "water")
+        result shouldBe listOf(0, 0, 0, 0, 0)
+    }
+
+    "evaluateGuess should mark only matching positions with 1" {
+        val result = evaluateGuess("hello", "house")
+        result shouldBe listOf(1, 0, 0, 0, 0)
+    }
 })
