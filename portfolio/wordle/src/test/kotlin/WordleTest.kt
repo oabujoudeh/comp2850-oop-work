@@ -23,6 +23,16 @@ class WordleTest : StringSpec({
     }
 
     // Tests for readWordList
-    "readWordList should read wordle target words from the specified file, returning them as a list of strings"
+    "readWordList should read wordle target words from the words.txt file, returning them as a list of strings"{
+        val words = readWordList("data/words.txt")
+
+        // make sure list is not empty
+        withClue("List should not be empty"){
+            words.isNotEmpty() shouldBe true
+        }
+
+        // make sure list is mutable
+
+    }
 
 })

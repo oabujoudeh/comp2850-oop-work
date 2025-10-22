@@ -7,6 +7,15 @@ fun readWordList(words.txt: String): MutableList<String> =
     java.io.File(words.txt).readLines().toMutableList()
 
 
+fun pickRandomWord(words: MutableList<String>): String {
+    val word = word.random()
+    words.remove(word)
+    return word
+}
+
+}
+
+
 
 
 
