@@ -13,7 +13,22 @@ fun pickRandomWord(words: MutableList<String>): String {
     return word
 }
 
+fun obtainGuess(attempt: Int): String {
+    while(true){
+        println("Attempt $attemp:")
+        val guess = readln().trim().lowercase()
 
+        if (isValid(guess)){
+            return guess
+        }
+        else{
+            println("Invalid guess, chose a 5 letter world.")
+        }
+            
+        }    
+        }
+    }
+}
 
 }
 
