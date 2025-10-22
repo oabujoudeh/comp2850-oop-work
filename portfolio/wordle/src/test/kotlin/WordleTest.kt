@@ -4,5 +4,21 @@ import io.kotest.matchers.shouldBe
 
 @Suppress("unused")
 class WordleTest : StringSpec({
-    // Write your tests here
+    // --- Tests for isValid ---
+    "isValid should return true for a valid 5-letter word" {
+        isValid("apple") shouldBe true
+    }
+
+    "isValid should return false for words shorter than 5 letters" {
+        isValid("dog") shouldBe false
+    }
+
+    "isValid should return false for words longer than 5 letters" {
+        isValid("bananas") shouldBe false
+    }
+
+    "isValid should return false for words with numbers or symbols" {
+        isValid("appl3") shouldBe false
+        isValid("ap!le") shouldBe false
+    }
 })
