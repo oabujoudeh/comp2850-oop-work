@@ -37,7 +37,18 @@ fun evaluateGuess(guess: String, target: String): List<Int> {
     return result
 }
 
-fun displayGuess(guess: String, matches: List<Int>)
+fun displayGuess(guess: String, matches: List<Int>) {
+    var result = ""
+    for (i in 0..4) {
+        if (matches[i] == 1) {
+            result += guess[i]
+        } else {
+            result += '?'
+        }
+    }
+    println(result)
+}
+
 
 
 
