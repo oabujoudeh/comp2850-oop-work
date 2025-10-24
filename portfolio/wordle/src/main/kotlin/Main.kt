@@ -6,6 +6,8 @@ fun main() {
     }
     val target = pickRandomWord(words)
 
+    val maxAttempts = 10
+
      for (attempt in 1..maxAttempts) {
         val guess = obtainGuess(attempt)
         val matches = evaluateGuess(guess, target)
