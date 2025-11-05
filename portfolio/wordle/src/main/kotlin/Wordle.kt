@@ -1,6 +1,8 @@
 // Implement the six required functions here
+const val WORD_LENGTH = 5
+
 fun isValid(word: String): Boolean {
-    return word.length == 5 && word.all { it.isLetter() }
+    return word.length == WORD_LENGTH && word.all { it.isLetter() }
 }
 
 fun readWordList(filename: String): MutableList<String> =
@@ -9,7 +11,7 @@ fun readWordList(filename: String): MutableList<String> =
 fun pickRandomWord(words: MutableList<String>): String {
     val word = words.random()
     words.remove(word)
-    return word
+    return word.lowercase()
 }
 
 fun obtainGuess(attempt: Int): String {
@@ -27,8 +29,10 @@ fun obtainGuess(attempt: Int): String {
 
 fun evaluateGuess(guess: String, target: String): List<Int> {
     val result = mutableListOf<Int>()
-    for (i in 0..4) {
-        if (guess[i] == target[i]) {
+    val g = guess.trim().lowercase()
+    val t = target.trim().lowercase()
+    for (i in 0 until WORD_LENGTH) {
+        if (g[i] == t[i]) {
             result.add(1)
         } else {
             result.add(0)
@@ -39,22 +43,13 @@ fun evaluateGuess(guess: String, target: String): List<Int> {
 
 fun displayGuess(guess: String, matches: List<Int>) {
     var result = ""
-    for (i in 0..4) {
+    val g = guess.trim().lowercase()
+    for (i in 0 until WORD_LENGTH) {
         if (matches[i] == 1) {
-            result += guess[i]
+            result += g[i]
         } else {
             result += '?'
         }
     }
     println(result)
 }
-
-
-
-
-
-
-
-
-
-

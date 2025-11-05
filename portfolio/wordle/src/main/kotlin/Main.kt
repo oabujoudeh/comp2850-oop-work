@@ -1,3 +1,5 @@
+const val MAX_ATTEMPTS = 10
+
 fun main() {
     val words = readWordList("data/words.txt")
     if (words.isEmpty()) {
@@ -6,11 +8,10 @@ fun main() {
     }
     val target = pickRandomWord(words)
 
-    val maxAttempts = 10
-
-     for (attempt in 1..maxAttempts) {
+     for (attempt in 1..MAX_ATTEMPTS) {
         val guess = obtainGuess(attempt)
         val matches = evaluateGuess(guess, target)
+
         displayGuess(guess, matches)
 
         if (matches.all { it == 1 }) {
