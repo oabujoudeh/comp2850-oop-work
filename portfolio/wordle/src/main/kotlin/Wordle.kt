@@ -1,12 +1,12 @@
 // Implement the six required functions here
 const val WORD_LENGTH = 5
 
-fun isValid(word: String): Boolean {
-    return word.length == WORD_LENGTH && word.all { it.isLetter() }
-}
+fun isValid(word: String): Boolean = word.length == WORD_LENGTH && word.all { it.isLetter() }
 
 fun readWordList(filename: String): MutableList<String> =
-    java.io.File(filename).readLines().toMutableList()
+    java.io.File(filename)
+        .readLines()
+        .toMutableList()
 
 fun pickRandomWord(words: MutableList<String>): String {
     val word = words.random()
